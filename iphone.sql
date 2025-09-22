@@ -67,5 +67,32 @@ select distinct country from iphone order by 1;
 
 update iphone 
 set country = 'United States'
-where country like United States;
+where country like 'United States';
 
+select country, trim(trailing '.' from country) from iphone order by 1;
+
+update iphone 
+set country = trim(trailing '.' from country);
+
+select * from iphone;
+
+
+select `date`,str_to_date(`date`,'%m/%d/%Y') from iphone;
+
+update iphone
+set `date` = str_to_date(`date`,'%m/%d/%Y');
+
+
+alter table iphone
+modify column `date` DATE;
+
+
+-- we have to remove null and blank value and data cleaning process is fiinalize
+
+select * from iphone where total_laid_off is null and percentage_laid_off is null;
+
+-- we have to scan is there are null or blank  in all column by this code
+select * from iphone where industry is null or industry = '';
+
+select * from iphone where company = 'Airbnb';
+                                            
