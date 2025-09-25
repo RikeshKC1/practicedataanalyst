@@ -123,7 +123,7 @@ select * from iphone where industry is null or industry = '';
 
 -- there is still one row where there is null 
 
-select * from iphone where comapny like 'Bally%';
+select * from iphone where company like 'Bally%';
 -- if there is only one row then we have to leave it
 
 -- we have seen that there is null value in this and we checked it 
@@ -136,7 +136,10 @@ delete from iphone where total_laid_off is null and percentage_laid_off is null;
 -- this is final clean data
 select * from iphone;
 
--- data cleaning is also done now for this project									
+-- in last we don't need row_num so we have to drop it
+alter table iphone
+drop column row_num;
+-- data cleaning is also done now for this project							
 
 
 
