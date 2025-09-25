@@ -95,4 +95,48 @@ select * from iphone where total_laid_off is null and percentage_laid_off is nul
 select * from iphone where industry is null or industry = '';
 
 select * from iphone where company = 'Airbnb';
-                                            
+
+
+
+-- first we have to make null if there is blank values
+update iphone 
+set industry = null
+where industry = '';
+
+select t1.industry, t2.industry 
+from iphone t1
+join iphone t2
+  on t1.company = t2.company
+where (t1.industry is null or t1.industry = '')
+  and t2.industry is not null;
+
+
+update iphone t1
+join iphone t2 
+on t1.company = t2.company
+set t1.industry = t2.industry
+where(t1.industry is null or t1.industry = '')
+and t2.industry is not null;
+
+select * from iphone where industry is null or industry = '';
+
+
+-- there is still one row where there is null 
+
+select * from iphone where comapny like 'Bally%';
+-- if there is only one row then we have to leave it
+
+-- we have seen that there is null value in this and we checked it 
+select * from iphone where total_laid_off is null and percentage_laid_off is null;
+
+-- if there is not any total values then we have to delete the null column for clean dataset
+delete from iphone where total_laid_off is null and percentage_laid_off is null;
+
+
+-- this is final clean data
+select * from iphone;
+
+-- data cleaning is also done now for this project									
+
+
+
