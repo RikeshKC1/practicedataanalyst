@@ -56,7 +56,7 @@ insert into last_practice1
  
  select distinct company ,trim(company) from last_practice1 order by 1;
  
- update last_practice1
+ update last_practice1s
  set company = trim(company);
  
  --  we don't find any problem in location
@@ -65,9 +65,39 @@ insert into last_practice1
 -- we find problem that there are same industry name but there are 2 name so we have to chanage 
 select distinct industry from last_practice1 order by 1;
  
-select * from last_practice  where industry like 'CryptoCurrency'; 
+select * from last_practice1  where industry like 'CryptoCurrency'; 
 
 update last_practice1 
 set industry = 'Crypto'
 where industry = 'CryptoCurrency';
+
+select * from last_practice1;
+
+select distinct country from last_practice1 order by 1;
+
+select country, trim(trailing '.' from country) from last_practice1 order by 1;
+
+select distinct country ,trim(trailing '.' from country) from last_practice1;
+
+update last_practice1 
+set country = trim(trailing '.' from country);
+
+select * from last_practice1;
+
+select `date`,str_to_date(date,'%m/%d/%Y') from last_practice1;
+
+update last_practice1 
+set `date` = str_to_date(date,'%m/%d/%Y');
+
+select * from last_practice1;
+
+alter table last_practice1
+modify column `date` DATE ;
+
+-- removing blank value and null values
+ select * from last_practice1;
+ 
+ select * from last_practice1 where total_laid_off is null and percentage_laid_off is null ;
+ 
+ select company,location from last_practice1 where company is null or '' ;
 
